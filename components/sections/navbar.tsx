@@ -76,7 +76,7 @@ export function Navbar() {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Expertise", href: "/#expertise" },
+    { label: "Expertise", href: "/#properties" },
     { label: "About", href: "/about" },
     { label: "New Launch", href: "/new-launch" },
   ]
@@ -89,14 +89,14 @@ export function Navbar() {
       if (pathname === '/about') return 2
       if (pathname === '/new-launch') return 3
       // For expertise section on home page
-      if (pathname === '/' && window.location.hash === '#expertise') return 1
+      if (pathname === '/' && window.location.hash === '#properties') return 1
     }
     return 0 // Default to home
   }
 
   const mobileNavItems = [
     { name: 'Home', href: '/', icon: Home },
-    { name: 'Expertise', href: '/#Expertise', icon: Building },
+    { name: 'Expertise', href: '/#properties', icon: Building },
     { name: 'About', href: '/about', icon: Users },
     { name: 'New Launch', href: '/new-launch', icon: Building },
   ]
