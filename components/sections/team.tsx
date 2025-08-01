@@ -37,7 +37,7 @@ export function Team() {
       gradient: "linear-gradient(195deg, #059669, #000)",
     },
     {
-      image: "/kellar.jpg",
+      image: "/keller.png",
       title: "Kaller",
       subtitle: "Market Research Lead",
       borderColor: "#7C3AED",
