@@ -153,7 +153,7 @@ export default function LocationMap() {
                     className="relative"
                   >
                     <img 
-                      src="/DIsland2.webp" 
+                      src="/dlisland2.webp" 
                       alt="Dubai Island" 
                       width={80}
                       height={60}
