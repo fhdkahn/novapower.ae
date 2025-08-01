@@ -169,8 +169,8 @@ export default function FloorPlanTabs() {
         
         {/* Download button */}
         <a
-          href="/floorplans/all-floorplans.zip"
-          download
+          href="/dreamlife-brochure.pdf"
+          download="Dream-Life-Brochure.pdf"
           className="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 text-xs font-semibold border border-white/30 hover:bg-white/30 transition-colors text-black"
         >
           DOWNLOAD
