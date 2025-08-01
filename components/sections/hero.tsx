@@ -189,41 +189,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Bottom Corner Buttons */}
-      <div className="absolute bottom-8 left-0 right-0 z-20 px-6">
-        <div className="container mx-auto flex justify-between items-end">
-          {/* Left Button - Explore Properties */}
-          <motion.button
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="group px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-primary/90 transition-all duration-300 shadow-xl backdrop-blur-sm"
-          >
-            Explore Properties
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </motion.button>
-
-          {/* Right Button - Watch Demo */}
-          <motion.button
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className={`group px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3 transition-all duration-300 backdrop-blur-sm border shadow-xl ${
-              themeMode === 'dark'
-                ? 'bg-white/15 border-white/30 text-white hover:bg-white/25'
-                : 'bg-white/40 border-gray-200/40 text-gray-800 hover:bg-white/50'
-            }`}
-          >
-            <Play className="w-5 h-5" />
-            Watch Demo
-          </motion.button>
-        </div>
-      </div>
-
       {/* Scroll indicator */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
