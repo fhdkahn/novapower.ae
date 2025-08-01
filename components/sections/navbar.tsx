@@ -215,7 +215,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-20 left-0 right-0 z-40 lg:hidden flex justify-center"
+            className="fixed top-20 left-0 right-0 z-[9999] lg:hidden flex justify-center"
           >
             <div className="rounded-2xl p-6 shadow-2xl border border-white/10 w-[90%] max-w-[320px] bg-black/70 backdrop-blur-xl">
               <div className="space-y-4">
@@ -260,7 +260,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 lg:hidden"
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9998] lg:hidden"
             onClick={() => setIsOpen(false)}
           />
         )}
