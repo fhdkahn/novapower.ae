@@ -8,24 +8,24 @@ import { motion } from 'framer-motion'
 const videos = [
   {
     id: 1,
-    title: "Dream Life Residences Launch Highlights",
-    description: "Exclusive showcase of luxury living in Deira Island",
-    youtubeId: "lNSbu8O8gOk",
-    thumbnail: "/images/building-day-hd.webp"
+    title: "Start of Construction Ceremony Highlights",
+    description: "Nova Power marks the start of Dreamlife Residences construction.",
+    youtubeId: "7MKA8ZOUr8o",
+    thumbnail: "/conlaunch.webp"
   },
   {
     id: 2,
-    title: "Dream Life Residences Launch Highlights",
+    title: "Dream Life Residences Launch Ceremony Highlights",
     description: "Premium amenities and world-class features reveal",
     youtubeId: "7joOpiLLLnk",
-    thumbnail: "/images/building-night-hd.webp"
+    thumbnail: "/launch.webp"
   },
   {
     id: 3,
-    title: "Dream Life Residences Launch Highlights",
+    title: "Dream Life Residences Launch Ceremony Dinner Highlights",
     description: "Strategic location and investment opportunities",
     youtubeId: "3RiT6BLB1dw",
-    thumbnail: "/images/heroback.webp"
+    thumbnail: "/dinner.webp"
   }
 ]
 
@@ -120,20 +120,20 @@ const VideoPlayCard = () => {
   }, [currentVideo.youtubeId, isVideoPlaying])
 
   return (
-    <div className="flex items-center justify-center w-full h-full p-6 relative">
+    <div className="flex items-center justify-center w-full h-full p-2 sm:p-4 md:p-6 relative">
       {/* Logo - Screen Corner (Outside Card) */}
-      <div className="absolute md:top-6 md:left-7 top-6 left-2 z-[9999] pointer-events-none">
+      <div className="absolute md:top-6 md:left-7 top-4 left-2 z-[9999] pointer-events-none">
         <Image
           src="/dlwhitelogo.png"
           alt="Dream Life Residences logo"
           width={150}
           height={150}
-          className="object-contain h-10 w-auto md:h-20 drop-shadow-lg"
+          className="object-contain h-8 w-auto sm:h-10 md:h-20 drop-shadow-lg"
           priority
         />
       </div>
 
-      <div className="relative w-full max-w-5xl">
+      <div className="relative w-full max-w-6xl">
         {/* Main Video Card */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -155,7 +155,7 @@ const VideoPlayCard = () => {
             onMouseLeave={handleMouseLeave}
           >
             {/* Video Background with Preview */}
-            <div className="relative aspect-video bg-gradient-to-br from-[#08182E] via-[#1a365d] to-[#2d3748]">
+            <div className="relative aspect-[4/3] sm:aspect-video bg-gradient-to-br from-[#08182E] via-[#1a365d] to-[#2d3748]">
               {/* YouTube iframe - Only render when playing */}
               {isVideoPlaying && (
                 <iframe
@@ -172,6 +172,14 @@ const VideoPlayCard = () => {
               {/* Static thumbnail overlay - Only show when not playing */}
               {!isVideoPlaying && (
                 <div className="absolute inset-0 bg-gradient-to-br from-[#08182E] via-[#1a365d] to-[#2d3748] transition-opacity duration-700">
+                  {/* Thumbnail Image */}
+                  <Image
+                    src={currentVideo.thumbnail}
+                    alt={currentVideo.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                   <div className="absolute inset-0 bg-black/20">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     <div className="absolute top-8 left-8 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse" />
@@ -187,7 +195,7 @@ const VideoPlayCard = () => {
                 <button 
                   onClick={isVideoPlaying ? handlePauseClick : handlePlayClick}
                   className={`
-                    w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full 
+                    w-16 h-16 sm:w-20 sm:h-20 bg-white/90 backdrop-blur-sm rounded-full 
                     flex items-center justify-center shadow-2xl
                     transition-all duration-300 hover:scale-110 hover:bg-white/50
                     hover:shadow-[0_0_40px_rgba(255,255,255,0.6)]
@@ -196,27 +204,27 @@ const VideoPlayCard = () => {
                   `}
                 >
                   {isVideoPlaying ? (
-                    <Pause className="w-8 h-8 ml-0" fill="currentColor" />
+                    <Pause className="w-6 h-6 sm:w-8 sm:h-8 ml-0" fill="currentColor" />
                   ) : (
-                    <Play className="w-8 h-8 text-gray-800 ml-1" fill="currentColor" />
+                    <Play className="w-6 h-6 sm:w-8 sm:h-8 text-gray-800 ml-1" fill="currentColor" />
                   )}
                 </button>
               </div>
 
               {/* Navigation Buttons */}
-              <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none z-20">
+              <div className="absolute inset-0 flex items-center justify-between px-2 sm:px-4 pointer-events-none z-20">
                 <button
                   onClick={handlePrevVideo}
-                  className="pointer-events-auto w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 hover:scale-110 group"
+                  className="pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 hover:scale-110 group"
                 >
-                  <ChevronLeft className="w-6 h-6 text-white group-hover:text-white/90" />
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/90" />
                 </button>
                 
                 <button
                   onClick={handleNextVideo}
-                  className="pointer-events-auto w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 hover:scale-110 group"
+                  className="pointer-events-auto w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 hover:scale-110 group"
                 >
-                  <ChevronRight className="w-6 h-6 text-white group-hover:text-white/90" />
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/90" />
                 </button>
               </div>
 
@@ -232,15 +240,15 @@ const VideoPlayCard = () => {
 
         {/* Section Title */}
         <motion.div 
-          className="text-center mt-10 -mb-20"
+          className="text-center mt-2 sm:mt-4 md:mt-6 -mb-8 sm:-mb-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-lg">
+          <h2 className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 drop-shadow-lg">
             {currentVideo.title}
           </h2>
-          <p className="text-sm md:text-base text-white/80 max-w-2xl mx-auto drop-shadow-md">
+          <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-2xl mx-auto drop-shadow-md px-4">
             {currentVideo.description}
           </p>
         </motion.div>
