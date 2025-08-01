@@ -94,7 +94,7 @@
   width: 100%;
   max-width: 320px;
   min-width: 0;
-  height: 380px;
+  height: 360px;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid #333;
@@ -197,8 +197,8 @@
   gap: 0.25rem;
   flex-shrink: 0;
   margin-top: auto;
-  padding-top: 2.5rem;
-  padding-bottom: 2rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
   border-radius: 0 0 20px 20px;
 }
