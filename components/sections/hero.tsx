@@ -171,10 +171,10 @@ export function Hero() {
               themeMode === 'dark' ? 'text-white' : 'text-gray-900'
             }`}
           >
-            Discover Your Dream
+            The Creator Behind
             <br />
             <GradientText className="text-5xl md:text-7xl">
-              Luxury Properties
+              Your Next Home
             </GradientText>
           </motion.h1>
 
