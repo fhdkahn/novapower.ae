@@ -1,0 +1,486 @@
+.carousel {
+    margin-top: -30px;
+    max-width: auto;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
+    /* Responsive height: use aspect-ratio for modern browsers, fallback to min/max height */
+    aspect-ratio: 16 / 7;
+    min-height: 350px;
+    height: 50vw;
+    max-height: 550px;
+    box-sizing: border-box;
+    padding-bottom: 110px; /* Add space for overlay card */
+}
+@media screen and (max-width: 1024px) {
+    .carousel {
+        min-height: 300px;
+        margin-top: 10px;
+        height: 55vw;
+        max-height: 500px;
+        aspect-ratio: 16 / 10;
+        padding-bottom: 90px;
+    }
+}
+@media screen and (max-width: 678px) {
+    .carousel {
+        min-height: 300px;
+        height: 130vw;
+        max-height: 620px;
+        aspect-ratio: 1 / 1;
+    }
+    .carousel .list .item .content{
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title{
+        font-size: 18px;
+    }
+}
+.carousel .list .item{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.carousel .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Remove border if present */
+    border: none;
+}
+.carousel .list .item .content{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+.carousel .list .item .author{
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+.carousel .list .item .title,
+.carousel .list .item .topic{
+    font-size: 3em;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+.carousel .list .item .topic{
+    color: #f1683a;
+}
+.carousel .list .item .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.carousel .list .item .buttons button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+}
+.carousel .list .item .buttons button:nth-child(2){
+    background-color: transparent;
+    /* Remove border */
+    border: none;
+    color: #eee;
+}
+.thumbnail{
+    position: absolute;
+    bottom: 20px;
+    left: 75%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+    transition: width 0.3s, height 0.3s;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    /* Remove border if present */
+    border: none;
+}
+.thumbnail .item .content{
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item .content .title{
+    font-weight: 500;
+}
+.thumbnail .item .content .description{
+    font-weight: 300;
+}
+.arrows{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    z-index: 100;
+    width: 600px;
+    max-width: 40%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.arrows button{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(174, 174, 174, 0.378);
+    border: none;
+    color: #fff;
+    filter: brightness(8);
+    font-size: 1.5rem;
+    font-family: monospace;
+    font-weight: bold;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #fff;
+    color: #000;
+}
+.carousel .list .item:nth-child(1){
+    z-index: 1;
+}
+.carousel .list .item:nth-child(1) .content .author,
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .topic,
+.carousel .list .item:nth-child(1) .content .des,
+.carousel .list .item:nth-child(1) .content .buttons{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s 1s linear 1 forwards;
+}
+@keyframes showContent{
+    to{
+        transform: translateY(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+.carousel .list .item:nth-child(1) .content .title{
+    animation-delay: 1.2s!important;
+}
+.carousel .list .item:nth-child(1) .content .topic{
+    animation-delay: 1.4s!important;
+}
+.carousel .list .item:nth-child(1) .content .des{
+    animation-delay: 1.6s!important;
+}
+.carousel .list .item:nth-child(1) .content .buttons{
+    animation-delay: 1.8s!important;
+}
+.carousel.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: showImage .5s linear 1 forwards;
+}
+@keyframes showImage{
+    to{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+.carousel.next .thumbnail .item:nth-last-child(1){
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.prev .list .item img{
+    z-index: 100;
+}
+@keyframes showThumbnail{
+    from{
+        width: 0;
+        opacity: 0;
+    }
+}
+.carousel.next .thumbnail{
+    animation: effectNext .5s linear 1 forwards;
+}
+@keyframes effectNext{
+    from{
+        transform: translateX(150px);
+    }
+}
+.carousel .time{
+    position: absolute;
+    z-index: 1000;
+    width: 0%;
+    height: 3px;
+    background-color: #f1683a;
+    left: 0;
+    top: 0;
+}
+.carousel.next .time,
+.carousel.prev .time{
+    animation: runningTime 3s linear 1 forwards;
+}
+@keyframes runningTime{
+    from{ width: 100%}
+    to{width: 0}
+}
+.carousel.prev .list .item:nth-child(2){
+    z-index: 2;
+}
+.carousel.prev .list .item:nth-child(2) img{
+    animation: outFrame 0.7s cubic-bezier(0.77, 0, 0.175, 1) 1 forwards;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+@keyframes outFrame{
+    to{
+        width: 150px;
+        height: 220px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 20px;
+        opacity: 0.7;
+    }
+}
+.carousel.prev .thumbnail .item:nth-child(1){
+    overflow: hidden;
+    opacity: 0;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.next .arrows button,
+.carousel.prev .arrows button{
+    pointer-events: none;
+}
+.carousel.prev .list .item:nth-child(2) .content .author,
+.carousel.prev .list .item:nth-child(2) .content .title,
+.carousel.prev .list .item:nth-child(2) .content .topic,
+.carousel.prev .list .item:nth-child(2) .content .des,
+.carousel.prev .list .item:nth-child(2) .content .buttons{
+    animation: contentOut 1.5s linear 1 forwards!important;
+}
+@keyframes contentOut{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content{
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title{
+        font-size: 18px;
+    }
+} 
+
+:global(.carousel.next) .list .item:nth-child(1) img {
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: showImage 0.7s cubic-bezier(0.77, 0, 0.175, 1) 1 forwards;
+    opacity: 0.7;
+    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+@keyframes showImage {
+    to {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        opacity: 1;
+    }
+} 
+
+.carousel.prev .list .item:nth-child(1) img {
+    /* No animation or transition for the new main image after prev */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    z-index: 100;
+    opacity: 1;
+}
+@keyframes shrinkToThumb {
+    to {
+        width: 150px;
+        height: 220px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 20px;
+        opacity: 0.7;
+    }
+} 
+
+/* Glowing border effect for main card */
+.glow-border {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  /* Remove border if present */
+  border: none;
+}
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  z-index: 3;
+  pointer-events: none;
+  /* Remove border and border-image */
+  border: none;
+  border-image: none;
+  animation: none;
+}
+.overlayCard {
+  position: absolute;
+  bottom: -130px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  min-height: 140px;
+  z-index: 30;
+  color: #222;
+  font-weight: 800;
+  font-size: 1.70rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.93);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.789), 0 1.5px 6px 0 rgba(0,0,0,0.08);
+  padding: 1.25rem 2rem 1.25rem 2rem;
+  letter-spacing: 0.05em;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+@media screen and (max-width: 1024px) {
+    .overlayCard {
+        width: 95vw;
+        max-width: 98vw;
+        min-height: 80px;
+        font-size: 1.2rem;
+        padding: 1rem 1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -30px;
+    }
+    .carousel {
+        padding-bottom: 90px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .thumbnail {
+        left: 80%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        gap: 6px;
+    }
+    .thumbnail .item {
+        width: 60px;
+        height: 90px;
+    }
+    .thumbnail .item img {
+        border-radius: 10px;
+    }
+    .thumbnail .item .content .title {
+        font-size: 0.8rem;
+    }
+    .thumbnail .item .content .description {
+       display: none;
+    }
+    .carousel .list .item .content {
+        max-width: 100%;
+        padding: 0.5rem;
+    }
+    .carousel .list .item .content .author {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+    .carousel .list .item .content .title,
+    .carousel .list .item .content .topic {
+        font-size: 1.2em;
+        line-height: 1.1em;
+    }
+    .carousel .list .item .content .des {
+        font-size: 0.9em;
+    }
+    .carousel .list .item .content .buttons {
+        grid-template-columns: repeat(2, 80px);
+        grid-template-rows: 28px;
+        margin-top: 8px;
+    }
+    .carousel .list .item .content .buttons button {
+        font-size: 0.8em;
+        padding: 0.15em 0.4em;
+    }
+    .overlayCard {
+        position: static !important;
+        bottom: auto !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100vw;
+        max-width: 100vw;
+        margin: 0 auto;
+        border-radius: 0 0 15px 15px;
+        box-sizing: border-box;
+        z-index: 10;
+    }
+    .carousel {
+        padding-bottom: 0 !important;
+    }
+    .arrows {
+        top: auto;
+        bottom: 30px;
+        right: 55%;
+        transform: none;
+        width: auto;
+    }
+    .arrows button {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
