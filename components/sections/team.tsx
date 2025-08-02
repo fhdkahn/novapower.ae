@@ -31,14 +31,14 @@ export function Team() {
     },
     {
       image: "/you.jpg",
-      title: "You ZhiJun",
-      subtitle: "Head of Sales Department",
+      title: "Omar Hassan",
+      subtitle: "Investment Director",
       borderColor: "#059669",
       gradient: "linear-gradient(195deg, #059669, #000)",
     },
     {
       image: "/keller.png",
-      title: "Kaller",
+      title: "Layla Abdullah",
       subtitle: "Market Research Lead",
       borderColor: "#7C3AED",
       gradient: "linear-gradient(225deg, #7C3AED, #000)",
@@ -48,12 +48,72 @@ export function Team() {
   // Add state for mouse position
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   // Handler for mouse move
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
     setMouse({ x, y });
+  };
+
+  // Form input handler
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Form submission handler
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      setSubmitStatus('error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://getform.io/f/ajjmmjga', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          source: 'Team Contact Form',
+          timestamp: new Date().toISOString()
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', phone: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -154,18 +214,77 @@ export function Team() {
                 <h3 className="text-2xl font-bold text-white mb-2">Get More Details</h3>
                 <p className="text-gray-300">Submit your details and our team will get in touch with you soon.</p>
               </div>
-              <form className="flex flex-col gap-4 md:flex-row md:items-end md:gap-6">
+              
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300 text-center"
+                >
+                  ✅ Thank you! Your message has been sent successfully. We'll get back to you soon.
+                </motion.div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-center"
+                >
+                  ❌ Please fill in all fields correctly and try again.
+                </motion.div>
+              )}
+              
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:flex-row md:items-end md:gap-6">
                 <div className="flex-1">
-                  <input type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-400 transition" />
+                  <input 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Your Name" 
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-400 transition" 
+                  />
                 </div>
                 <div className="flex-1">
-                  <input type="email" placeholder="Email Address" className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-400 transition" />
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email Address" 
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-400 transition" 
+                  />
                 </div>
                 <div className="flex-1">
-                  <input type="tel" placeholder="Phone Number" className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-400 transition" />
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Phone Number" 
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-400 transition" 
+                  />
                 </div>
                 <div className="w-full md:w-auto">
-                  <button type="submit" className="w-full md:w-auto px-8 py-3 rounded-lg bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-semibold shadow-lg hover:from-orange-600 hover:to-purple-700 transition-all duration-300 whitespace-nowrap">Submit</button>
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full md:w-auto px-8 py-3 rounded-lg bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-semibold shadow-lg hover:from-orange-600 hover:to-purple-700 transition-all duration-300 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      'Submit'
+                    )}
+                  </button>
                 </div>
               </form>
             </div>
