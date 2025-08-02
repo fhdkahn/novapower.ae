@@ -45,8 +45,7 @@ const Footer: React.FC<FooterProps> = ({ variant = 'default' }) => {
     { href: '/', label: 'Home' },
     { href: '/expertise', label: 'Expertise' },
     { href: '/about', label: 'About' },
-    { href: '/new-launch', label: 'New Launch' },
-    { href: '/contact', label: 'Contact' }
+    { href: '/new-launch', label: 'New Launch' }
   ]
 
   const companyInfo = [
@@ -67,24 +66,26 @@ const Footer: React.FC<FooterProps> = ({ variant = 'default' }) => {
         ? 'bg-white/10 backdrop-blur-sm border border-white/20' 
         : 'bg-gradient-to-b from-white via-orange-50/50 to-pink-100/70 dark:from-gray-950 dark:via-gray-900/95 dark:to-gray-800/90'
     }`}>
-      {/* Animated Light Streaks - Only for default variant */}
-      {variant === 'default' && (
-        <div className="absolute inset-0 pointer-events-none">
-          {lightStreaks.map((streak) => (
-            <div
-              key={streak.id}
-              className="absolute w-px bg-gradient-to-t from-transparent via-orange-300/60 to-transparent dark:via-white/40 animate-light-streak"
-              style={{
-                left: streak.left,
-                height: '100%',
-                animationDelay: streak.animationDelay,
-                animationDuration: streak.animationDuration,
-                opacity: streak.opacity
-              }}
-            />
-          ))}
-        </div>
-      )}
+      {/* Animated Light Streaks */}
+      <div className="absolute inset-0 pointer-events-none">
+        {lightStreaks.map((streak) => (
+          <div
+            key={streak.id}
+            className={`absolute w-px bg-gradient-to-t from-transparent to-transparent animate-light-streak ${
+              variant === 'transparent' 
+                ? 'via-white/40' 
+                : 'via-orange-300/60 dark:via-white/40'
+            }`}
+            style={{
+              left: streak.left,
+              height: '100%',
+              animationDelay: streak.animationDelay,
+              animationDuration: streak.animationDuration,
+              opacity: streak.opacity
+            }}
+          />
+        ))}
+      </div>
 
       {/* Ambient Glow Effect - Only for default variant */}
       {variant === 'default' && (
