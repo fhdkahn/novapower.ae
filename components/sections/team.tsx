@@ -31,14 +31,14 @@ export function Team() {
     },
     {
       image: "/you.jpg",
-      title: "Omar Hassan",
-      subtitle: "Investment Director",
+      title: "You ZhiJun",
+      subtitle: "Head of Sales Department",
       borderColor: "#059669",
       gradient: "linear-gradient(195deg, #059669, #000)",
     },
     {
       image: "/keller.png",
-      title: "Layla Abdullah",
+      title: "Keller",
       subtitle: "Market Research Lead",
       borderColor: "#7C3AED",
       gradient: "linear-gradient(225deg, #7C3AED, #000)",
